@@ -53,6 +53,9 @@ To access Application deployed at live URL
 
 2. https://samira0101.github.io/weather-dashboard-api/
 
+# Screenshot displaying weather application
+
+![](Assets/images/screencapture-127-0-0-1-5501-index-html-2022-05-31-20_00_49.png)
 
 # References
 
@@ -61,7 +64,7 @@ To access Application deployed at live URL
 3. https://www.w3schools.com/jquery/html_html.asp
 4. https://www.sitepoint.com/jquery-each-function-examples/
 5. https://birmingham.bootcampcontent.com/university-of-birmingham/UBHM-VIRT-FSF-PT-11-2021-U-LOL
-6. https://developer.mozilla.org/en-US/docs/Web/JavaScript/ ReferenceStatements/if...else
+6. https://developer.mozilla.org/en-US/docs/Web/JavaScript/ReferenceStatements/if...else
 7. https://momentjs.com/
 8. https://getuikit.com/docs/installation
 9. https://api.jquery.com/
