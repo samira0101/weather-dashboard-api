@@ -110,3 +110,14 @@ var saveLocation = function(location) {
     searchTerms.push(displayName);
     searchHistory.push(cityData);
 
+    // update localStorage
+    localStorageHistory = {
+        searchTerms: searchTerms,
+        searchHistory: searchHistory
+    }
+    localStorage.setItem("searchHistory", JSON.stringify(localStorageHistory));
+
+    // update the search history
+    createSearchHistoryElement(cityData);
+}
+
