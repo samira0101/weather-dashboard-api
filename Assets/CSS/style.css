@@ -38,3 +38,18 @@ p {
         text-align: left;
     }
 }
+
+/* Mobile Phones and Smaller */
+@media screen and (max-width: 575px) {
+    #current-weather-data {
+        flex-direction: column;
+        padding-top: 0px;
+    }
+    .forecast-item {
+        justify-content: space-between;
+    }
+    p {
+        margin-bottom: 0px;
+        margin-top: 10px;
+    }
+}
