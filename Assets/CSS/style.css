@@ -1,0 +1,16 @@
+header {
+    padding-top: 3em;
+}
+p {
+    margin-bottom: 0px;
+}
+.uk-card {
+    margin: 10px;
+}
+.uk-card-body {
+    font-size: 14px;
+}
+.uk-container {
+    padding-top: 2em;
+}
+
