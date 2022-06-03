@@ -270,3 +270,40 @@ var displayWeather = function(weatherData) {
     displayForecast(weatherData.daily)
 }
 
+var displayForecast = function(forecastData) {
+    /* display the 5 day forecast */
+
+    // iterate through the first 5 days in the forecast data
+    for (var i=1; i < 6; i++) {
+
+        // display the date
+        var dateElement = forecastElement.querySelector("#forecast-date-" + i);
+        var unixDate = forecastData[i].dt;
+        dateElement.textContent = moment.unix(unixDate).format("MMMM Do");
+
+        // display the icon representation
+        var iconElement = forecastElement.querySelector("#forecast-icon-" + i);
+        var iconCode = forecastData[i].weather[0].icon;
+        var iconAlt = forecastData[i].weather[0].description;
+        displayIcon(iconElement, iconCode, iconAlt);
+
+        // display humidity
+        var humidityElement = forecastElement.querySelector("#forecast-humidity-" + i);
+        var humidity = forecastData[i].humidity;  // percentage
+        humidityElement.textContent = "Humidity: " + humidity + "%";
+
+        // display min temperature
+        var minTempElement = forecastElement.querySelector("#forecast-min-temp-" + i);
+        var minTemp = Math.floor(forecastData[i].temp.min);  // fahrenheit if imperial, celsius if metric
+        minTempElement.textContent = "Low: " + minTemp + "°F";
+
+        // display max temperature
+        var maxTempElement = forecastElement.querySelector("#forecast-max-temp-" + i);
+        var maxTemp = Math.floor(forecastData[i].temp.max);  // fahrenheit if imperial, celsius if metric
+        maxTempElement.textContent = "High: " + maxTemp + "°F";
+    }
+
+    // display the forecast container
+    var forecastContainer = document.querySelector("#weather-forecast-container");
+    forecastContainer.style.display = "block";
+}
