@@ -12,3 +12,24 @@ var forecastElement = document.querySelector("#forecast");
 var displayName;
 var searchTerms = [];
 var searchHistory = [];
+
+var defineDisplayName = function(location) {
+    /* display the location as city, country */
+
+    // define the location components
+    var city = location.adminArea5;
+    var country = location.adminArea1;
+
+    // construct an array of the location components
+    var tempDisplayName = [];
+    if (city) {
+        tempDisplayName.push(city);
+    }
+    if (country) {
+        tempDisplayName.push(country);
+    }
+
+    // return the joined array so that we don't need to deal with extra commas
+    return tempDisplayName.join(", ");
+}
+
