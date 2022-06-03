@@ -174,3 +174,18 @@ var createSearchHistoryElement = function(searchHistoryData) {
     newCard.setAttribute("data-location-name", searchHistoryData.displayName.split(" ").join("+"));
     searchHistoryItems.insertBefore(newCard, searchHistoryItems.firstChild);
 }
+
+var displaySearchHistory = function() {
+    /* display search history cards if there's a search history in localStorage */
+
+    var loadedSearchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    if(loadedSearchHistory) {
+        searchTerms = loadedSearchHistory.searchTerms;
+        searchHistory = loadedSearchHistory.searchHistory;
+        for (var i=0; i < searchTerms.length; i++) {
+            if (!searchTerms.includes(searchHistory[i])) {
+                createSearchHistoryElement(searchHistory[i]);  // add a search term to the search history panel
+            }
+        }
+    }
+}
