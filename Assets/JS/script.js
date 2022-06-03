@@ -144,3 +144,18 @@ var getCoordinates = function(searchTerm) {
         }
     });
 }
+
+var getWeather = function(coords) {
+    /* make the api call to get the weather based on a set of coordinates {lat: x, lng: y} */
+
+    var weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + coords.lat + "&lon=" + coords.lng + "&units=imperial&exclude=minutely,hourly&appid=1ca21b13300483dc1e57d37215dcac93";
+    fetch(weatherApiUrl).then(function(res){
+        if (res.ok) {
+            res.json().then(function(data){
+                displayWeather(data);  // display the current weather and forecast
+            })
+        } else {
+            console.log("Couldn't get the weather data from the openweathermap API: ", res.text);
+        }
+    })
+}
