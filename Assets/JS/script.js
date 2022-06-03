@@ -96,3 +96,17 @@ var saveLocation = function(location) {
         coords: location.latLng
     };
 
+    // update the search history arrays
+    if (searchTerms.length == 5) {
+
+        // remove the last element if the array has 5 items
+        searchTerms.splice(0, 1);
+        searchHistory.splice(0, 1);
+
+        // also remove it from the DOM
+        var fifthChild = searchHistoryItems.childNodes[4];
+        searchHistoryItems.removeChild(fifthChild);
+    }
+    searchTerms.push(displayName);
+    searchHistory.push(cityData);
+
