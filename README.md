@@ -63,7 +63,9 @@ To access Application deployed at live URL
 5. https://birmingham.bootcampcontent.com/university-of-birmingham/UBHM-VIRT-FSF-PT-11-2021-U-LOL
 6. https://developer.mozilla.org/en-US/docs/Web/JavaScript/ ReferenceStatements/if...else
 7. https://momentjs.com/
-8. https://bootswatch.com/minty/
+8. https://getuikit.com/docs/installation
 9. https://api.jquery.com/
 10. https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 11. https://developer.myptv.com/Documentation/Geocoding%20API/QuickStart.htm
+12. https://www.javascripttutorial.net/javascript-dom/javascript-removechild/
+13. https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
