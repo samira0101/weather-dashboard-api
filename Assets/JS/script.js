@@ -349,3 +349,9 @@ var confirmLocationHandler = function(event){
         confirmLocationModal.querySelector("#confirm-location-form-message").classList.add("uk-text-primary");
     }
 }
+
+// event handlers and on load
+displaySearchHistory();
+searchButton.addEventListener("click", searchButtonHandler)
+searchHistoryItems.addEventListener("click", searchHistoryHandler);
+confirmLocationModal.addEventListener("submit", confirmLocationHandler);
