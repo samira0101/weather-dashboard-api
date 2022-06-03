@@ -121,3 +121,26 @@ var saveLocation = function(location) {
     createSearchHistoryElement(cityData);
 }
 
+var getCoordinates = function(searchTerm) {
+    /* use the mapquest API to geocode the location based on the search terms */
+
+    searchTerm = searchTerm.split(" ").join("+");
+    var geocodingApiUrl = "https://www.mapquestapi.com/geocoding/v1/address?key=ZJUiXdZZzhsEe05eUGvmmAsIoTPvQOHn&location=" + searchTerm;
+    fetch(geocodingApiUrl).then(function(res) {
+        if (res.ok) {
+            res.json().then(function(data) {
+
+                // find one location to use to generate the weather
+                var locations = data.results[0].locations;
+                if (locations.length == 1) {
+                    saveLocation(locations[0]);
+                    getWeather(locations[0].latLng);
+                } else {
+                    confirmLocation(locations);  // prompt the user to confirm the location
+                }
+            })
+        } else {
+            console.log("Couldn't get the coordinates from the mapquest API: ", res.text);
+        }
+    });
+}
