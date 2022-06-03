@@ -14,3 +14,27 @@ p {
     padding-top: 2em;
 }
 
+/* Tablets and Smaller */
+@media screen and (max-width: 768px) {
+    body {
+        width: 90%;
+        margin: auto;
+    }
+    main {
+        flex-direction: column;
+    }
+    .uk-card-body {
+        font-size: 16px;
+    }
+    #forecast {
+        flex-direction: column;
+    }
+    .forecast-item {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .forecast-item-body {
+        text-align: left;
+    }
+}
