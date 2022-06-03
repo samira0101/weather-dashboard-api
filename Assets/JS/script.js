@@ -69,3 +69,30 @@ var confirmLocation = function(locationsArray) {
     // display the modal
     UIkit.modal("#confirm-location-modal").show();
 }
+
+var saveLocation = function(location) {
+    /* add the display names and coordinates for each search to localStorage */
+
+    // set the displayName value
+    displayName = defineDisplayName(location);
+
+    // if the term is already in the search history, remove it from the arrays and DOM
+    if (searchTerms.includes(displayName)) {
+
+        // remove the display name from the search arrays
+        var index = searchTerms.indexOf(displayName);
+        searchTerms.splice(index, 1);
+        searchHistory.splice(index, 1);
+
+        // remove the element
+        var dataLocationName = displayName.split(" ").join("+");
+        var searchHistoryItem = searchHistoryItems.querySelector("[data-location-name='" + dataLocationName + "']");
+        searchHistoryItems.removeChild(searchHistoryItem);
+    }
+
+    // define the object to save
+    var cityData = {
+        displayName: displayName,
+        coords: location.latLng
+    };
+
