@@ -7,3 +7,8 @@ var searchHistoryItems = document.querySelector("#search-history-items");
 var currentWeatherCity = document.querySelector("#current-weather-city");
 var currentWeatherData = document.querySelector("#current-weather");
 var forecastElement = document.querySelector("#forecast");
+
+// define other variables
+var displayName;
+var searchTerms = [];
+var searchHistory = [];
