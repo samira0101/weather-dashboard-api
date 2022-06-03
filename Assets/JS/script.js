@@ -159,3 +159,18 @@ var getWeather = function(coords) {
         }
     })
 }
+
+var createSearchHistoryElement = function(searchHistoryData) {
+    /* helper function to create search history card */
+    
+    // display the header
+    var searchHistoryHeader = document.querySelector("#search-history-title");
+    searchHistoryHeader.style.display = "block";
+
+    // create the card for the location
+    var newCard = document.createElement("div");
+    newCard.classList = "uk-card-default uk-card uk-card-body uk-card-hover uk-card-small uk-text-center search-history-item";
+    newCard.textContent = searchHistoryData.displayName;
+    newCard.setAttribute("data-location-name", searchHistoryData.displayName.split(" ").join("+"));
+    searchHistoryItems.insertBefore(newCard, searchHistoryItems.firstChild);
+}
