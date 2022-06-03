@@ -197,3 +197,76 @@ var displayIcon = function(iconElement, iconCode, iconAlt) {
     iconElement.setAttribute("src", iconSrc);
     iconElement.setAttribute("alt", iconAlt);
 }
+
+var displayWeather = function(weatherData) {
+    /* use the weatherData object to display the current weather */
+
+    // display the city name
+    currentWeatherCity.textContent = displayName;
+
+    // display today's date
+    var dateElement = currentWeatherData.querySelector("#current-weather-date");
+    var unixDate = weatherData.current.dt;
+    var formattedDate =  moment.unix(unixDate).format("dddd, MMMM Do");
+    dateElement.textContent = formattedDate;
+
+    // display the weather description
+    var iconElement = currentWeatherData.querySelector("#current-weather-icon");
+    var iconCode = weatherData.current.weather[0].icon;
+    var iconAlt = weatherData.current.weather[0].description + " icon";
+    displayIcon(iconElement, iconCode, iconAlt);
+
+    // display the humidity
+    var humidityElement = currentWeatherData.querySelector("#current-weather-humidity");
+    var humidity = weatherData.current.humidity;  // percentage
+    humidityElement.textContent = "Humidity: " + humidity + "%";
+
+    // display the current temperature
+    var temperatureElement = currentWeatherData.querySelector("#current-weather-current-temp");
+    var temperature = Math.floor(weatherData.current.temp);  // fahrenheit if imperial, celsius if metric
+    temperatureElement.textContent = "Current Temperature: " + temperature + "°F";
+
+    // display the minimum temperature
+    var minTempElement = currentWeatherData.querySelector("#current-weather-min-temp");
+    var minTemp = Math.floor(weatherData.daily[0].temp.min);  // fahrenheit if imperial, celsius if metric
+    minTempElement.textContent = "Low: " + minTemp + "°F";
+
+    // display the maximum temperature
+    var maxTempElement = currentWeatherData.querySelector("#current-weather-max-temp");
+    var maxTemp = Math.floor(weatherData.daily[0].temp.max);  // fahrenheit if imperial, celsius if metric
+    maxTempElement.textContent = "High: " + maxTemp + "°F";
+
+    // display the wind speed
+    var windSpeedElement = currentWeatherData.querySelector("#current-weather-wind-speed");
+    var windSpeed = weatherData.current.wind_speed;  // mph if imperial, m/s if metric
+    windSpeedElement.textContent = "Wind Speed: " + windSpeed + " miles per hour";
+
+    // display the uv index
+    var uvIndexElement = currentWeatherData.querySelector("#current-weather-uv-index");
+    uvIndexElement.innerHTML = "";
+    uvIndexElement.textContent = "UV Index: ";
+
+    var uvIndexSpan = document.createElement("span")
+    var uvIndex = weatherData.current.uvi;
+    uvIndexSpan.textContent = uvIndex;
+    
+    // update uv index text color according to the EPA sun safety scale: https://www.epa.gov/sunsafety/uv-index-scale-0
+    if (uvIndex >= 8) {
+        uvIndexSpan.classList.add("uk-text-danger");
+    } else if (uvIndex >= 3) {
+        uvIndexSpan.classList.add("uk-text-warning");
+    } else {
+        uvIndexSpan.classList.add("uk-text-success")
+    }
+    uvIndexElement.appendChild(uvIndexSpan);
+
+    // display the weatherPanel and currentWeatherContainer now that we have weather data
+    var weatherPanel = document.querySelector("#weather-panel");
+    var currentWeatherContainer = document.querySelector("#current-weather-container");
+    weatherPanel.style.display = "block";
+    currentWeatherContainer.style.display = "block";
+    
+    // display the forecast
+    displayForecast(weatherData.daily)
+}
+
