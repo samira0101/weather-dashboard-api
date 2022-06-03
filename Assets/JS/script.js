@@ -307,3 +307,45 @@ var displayForecast = function(forecastData) {
     var forecastContainer = document.querySelector("#weather-forecast-container");
     forecastContainer.style.display = "block";
 }
+
+// event handler functions
+var searchButtonHandler = function(event) {
+    event.preventDefault();
+    confirmLocationModal.querySelector("#confirm-location-form-message").classList.remove("uk-text-primary");
+    var searchValue = searchInput.value;
+    if (searchValue) {
+        getCoordinates(searchValue);
+        searchInput.value = "";
+    }
+}
+
+var searchHistoryHandler = function(event) {
+    if (event.target.classList.contains("search-history-item")) {
+        var searchedCity = event.target.getAttribute("data-location-name");
+        getCoordinates(searchedCity);
+    }
+}
+
+var confirmLocationHandler = function(event){
+    event.preventDefault();
+
+    // figure out whether the user has chosen a location
+    var confirmedLocation;
+    var radioButtons = document.getElementsByName("search-result");
+    for (var i=0; i < radioButtons.length; i++) {
+        if (radioButtons[i].checked) {
+            confirmedLocation = JSON.parse(radioButtons[i].getAttribute("data-location"));
+        }
+    }
+
+    // if they chose a location, display the weather
+    if (confirmedLocation) {
+        UIkit.modal("#confirm-location-modal").hide();
+        saveLocation(confirmedLocation);
+        getWeather(confirmedLocation.latLng)
+        confirmLocationModal.querySelector("#confirm-location-form-message").classList.remove("uk-text-primary");
+    }
+    else {  // otherwise, let the user know they're missing a response.
+        confirmLocationModal.querySelector("#confirm-location-form-message").classList.add("uk-text-primary");
+    }
+}
